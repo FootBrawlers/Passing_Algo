@@ -6,14 +6,13 @@ class Simple2
 	{
 		List<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		Scanner sc = new Scanner(System.in);
-        Integer a=sc.nextInt();
-        Integer b=sc.nextInt();
-        ArrayList<Integer> temp = new ArrayList<Integer>();
-        temp.add(a);
-        temp.add(a);
-        list.add(temp);
-
+        	Integer a=sc.nextInt();
+        	Integer b=sc.nextInt();
+   	     	ArrayList<Integer> temp = new ArrayList<Integer>();
+        	temp.add(a);
+        	temp.add(a);
+        	list.add(temp);
 		System.out.println(list);
- 
-}
+
+	}
 }
