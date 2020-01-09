@@ -21,11 +21,17 @@ center_y = 310
 screen_color = (0,0,0)
 field_color = (4,204,130)
 field_border_color = (255,255,255)
+host_bot_color = (0,0,255)
+opp_bot_color = (255,0,0)
 
+
+host_cord = {}
+opp_cord = {}
 
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:
+            print(host_cord)
             exit()
 
     # FIELD STYLING
@@ -50,10 +56,31 @@ while True:
     # center line horizontal
     pygame.draw.line(screen, field_border_color, (field_x,center_y), (field_x + field_length, center_y),1)
 
-
     screen.unlock()
-
+    if event.type == pygame.MOUSEBUTTONDOWN and len(host_cord)<7:
+        temp = pygame.mouse.get_pos()
+        if temp not in host_cord.keys():
+            host_cord[pygame.mouse.get_pos()] = len(host_cord)
+             
+    if event.type == pygame.MOUSEBUTTONDOWN and len(host_cord)==7 and len(opp_cord)<6:
+        temp = pygame.mouse.get_pos()
+        if temp not in opp_cord.keys():
+            opp_cord[pygame.mouse.get_pos()] = len(opp_cord)
+            
+    screen.lock()
+    if len(list(host_cord.keys())[:-1]) <= 6:
+        for cord in host_cord.keys():
+            temp = tuple(cord)    
+            pygame.draw.circle(screen, host_bot_color, temp, 10)
+    
+    if len(opp_cord) <= 6:
+        for cord in opp_cord.keys():
+            temp = tuple(cord)    
+            pygame.draw.circle(screen, opp_bot_color, temp, 10)
+    
+    screen.unlock()
     pygame.display.update()
 
 pygame.quit()
+
 quit()
