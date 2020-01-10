@@ -202,6 +202,25 @@ class Simple2
 			{
 				System.out.println("Final id is " + id_list2.get(i));
 				System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
+				try {
+						FileWriter writer = new FileWriter("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\output.txt");
+						BufferedWriter bwr = new BufferedWriter(writer);
+						bwr.write(String.valueOf(id_list2.get(i)));
+						bwr.write(" ");
+						bwr.write(String.valueOf(x3[i]));
+						bwr.write(" ");
+						bwr.write(String.valueOf(y3[i]));
+						bwr.close();
+						System.out.println("succesfully written to a file");
+            
+					} 
+				catch (IOException ioe) 
+					{
+						ioe.printStackTrace();
+				    }
+        
+        
+        
 			}
 		}
         
@@ -219,7 +238,22 @@ class Simple2
 		System.out.println("After second condition id's stasifying are:");
 		for(int i=0;i<id_list2.size();i++)
 			System.out.println("id = " + id);*/
+<<<<<<< HEAD
 		
+=======
+		/*try {
+            FileWriter writer = new FileWriter("output.txt");
+            BufferedWriter bwr = new BufferedWriter(writer);
+            bwr.write("");
+            bwr.write(" ");
+            bwr.write("Hobert");
+            bwr.close();
+            System.out.println("succesfully written to a file");
+            
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }*/
+>>>>>>> master
  
 	}
 }
