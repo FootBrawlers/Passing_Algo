@@ -238,9 +238,7 @@ class Simple2
 		System.out.println("After second condition id's stasifying are:");
 		for(int i=0;i<id_list2.size();i++)
 			System.out.println("id = " + id);*/
-<<<<<<< HEAD
-		
-=======
+
 		/*try {
             FileWriter writer = new FileWriter("output.txt");
             BufferedWriter bwr = new BufferedWriter(writer);
@@ -253,7 +251,6 @@ class Simple2
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }*/
->>>>>>> master
  
 	}
 }
