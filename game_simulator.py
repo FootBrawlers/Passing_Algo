@@ -100,8 +100,8 @@ while True:
         temp = pygame.mouse.get_pos()
         if temp not in opp_cord.keys():
             opp_cord[pygame.mouse.get_pos()] = len(opp_cord)
-            
-    # coordinates_host = []
+                    
+            # coordinates_host = []
     # coordinates_opp = []
     
     if len(list(host_cord.keys())[:-1]) <= 6:
