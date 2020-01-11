@@ -3,6 +3,78 @@ import java.lang.*;
 import java.io.*;
 class Simple2
 {
+	static boolean checkrectangle(int i_x,int i_y,int f_x,int f_y,int ob_x,int ob_y,int l,int ci)
+	{
+		
+		double p=Math.sqrt(((i_x-f_x)*(i_x-f_x))+((i_y-f_y)*(i_y-f_y)));
+		double l1=Double.valueOf(l);
+		double X2=f_x + l1;
+		double Y2=f_y +p;
+		double x2 =X2+f_x-i_x;
+		double y2=Y2+f_y-i_y;
+		
+		double X1=f_x - l1;
+		double Y1=f_y - p;
+		double x1 =X1+f_x-i_x;
+		double y1=Y1+f_y-i_y;
+		if(ci==0)
+		{
+			System.out.println("-----------------------------------");
+			System.out.println("l1:" + l1 + " " + "p:" + p);
+			System.out.println();
+			System.out.println("One side of co-ordinates are(may be negative): " );
+			System.out.println("Values of third coordinate of " + X1 + "," + Y1);
+			System.out.println("Values of fourth co-ordinate of " + x1 + "," + y1);
+			System.out.println();
+			System.out.println("Another side of co-ordinates are: " );
+			System.out.println("Values of third coordinate of " + X2 + "," + Y2);
+			System.out.println("Values of fourth co-ordinate of " + x2 + "," + y2);
+			System.out.println("-----------------------------------");
+			System.out.println();
+		}
+		//if(((ob_x>=i_x && ob_x>=f_x && ob_x<X1 && ob_x<x1) && (ob_y>=i_y && ob_y>=f_y && ob_y<Y2 && ob_y<Y2)) || ((ob_x>=i_x && ob_x>=f_x && ob_x<X2 && ob_x<x2) && (ob_y>=i_y && ob_y>=f_y && ob_y<Y2 && ob_y<Y2)))//check if is obstacle
+		
+		//if(ob_x>=X1 && ob_x>=x1 && ob_x<X2 && ob_x<x2 && ob_y>=Y1 && ob_y>=y1 && ob_y<Y2 && ob_y<y2)//checking if it is an obstacle
+		if((ob_x>=X1 && ob_x<X2) || (ob_x>=x1 && ob_x<x2) && (ob_y>=Y1 && ob_y>=y1 && ob_y<Y2 && ob_y<y2))
+		{
+			return false;
+		}
+		else
+			return true;
+		
+		/*
+		double l1=Double.valueOf(l);
+		long l2=Math.round(l);
+		
+		double d=Math.atan(l1/p);
+		
+		double h=(l1/Math.sin(d));
+		long h1=Math.round(h);
+		
+		double A=Math.pow(i_x,2)-Math.pow(f_x,2)+Math.pow(i_y,2)-Math.pow(f_y,2)-Math.pow(l2,2)+Math.pow(h1,2);
+		double B= (1 + (Math.pow(i_y-f_y,2)/Math.pow(i_x-f_x,2)));
+		double C=(((2*i_x*(i_y-f_y))/(i_x-f_x))-(A*(i_y-f_y)/Math.pow(i_x-f_x,2)));
+		double D=((Math.pow(A,2))/((4*(Math.pow(i_x-f_x,2)))-(i_x*((Math.pow(i_x,2)-Math.pow(f_x,2)-Math.pow(i_y,2)-Math.pow(f_y,2)-Math.pow(l2,2)+Math.pow(h1,2)))/(i_x-f_x))+ (Math.pow(i_y,2)-Math.pow(l2,2)+Math.pow(i_x,2)))); 
+		
+		long a=Math.round(A);
+		long b=Math.round(B);
+		long c=Math.round(C);
+		long d1=Math.round(D);
+		
+		double Y=Math.round((-c + Math.sqrt(c*c-(4*b*d1)))/2*b);
+		double X =Math.round((i_x*i_x)-(f_x*f_x)+(i_y*i_y)-(f_y*f_y)-(l2*l2)+(h1*h1)-2*Y*(i_y-f_y));*/
+		
+		/*double Y=(-C + Math.sqrt(C*C-(4*B*D)))/2*B;
+		double X =(i_x*i_x)-(f_x*f_x)+(i_y*i_y)-(f_y*f_y)-(l1*l1)+(h*h)-2*Y*(i_y-f_y);*/ 
+		
+		
+		//System.out.println(inc_var);
+		/*System.out.println("----------------------------");
+		//System.out.println("p:" + p + " " + "l1:" + l1 + "l2" + l2 + " " + "d:" + d + " " + "h:" + h + " " + "h1" + h1 + " " + "A:" + a + " " + "B:" + b + " " + "C:" + c + " " + "D:" + d1);
+		System.out.println("Values of third coordinate: " + X + "," + Y);
+		System.out.println("Values of fourth co-ordinate: " + x + "," + y);*/
+		
+	} 
 	public static void main(String args[])
 	{
 		int[] get_x=new int[12];
@@ -79,7 +151,7 @@ class Simple2
 		
 		
 		
-		final int width=12,length=18;
+		final int width=700,length=900,len_ob=width/2;
 		//int x1[]=new int[12];
 		//int y1[]=new int[12];
 		int x2[]=new int[6];
@@ -87,7 +159,7 @@ class Simple2
 		int x3[]=new int[6];
 		int y3[]=new int[6];
 		int count=0;
-		int g1_x=0,g2_x=(width-1)/2,g1_y=(length-1)/2,g2_y=(length-1)/2;
+		int g1_x=0,g2_x=(width-1),g1_y=(length-1)/2,g2_y=(length-1)/2,imagine_width=10,count_iteration=0;
 		
 		List<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		List<ArrayList<Integer>> matched_list = new ArrayList<ArrayList<Integer>>();
@@ -119,7 +191,7 @@ class Simple2
 		for(int i=1;i<6;i++)
 		{
 			
-				if(Math.sqrt(((current_x-get_x[i])*(current_x-get_x[i]))+((current_y-get_y[i])*(current_y-get_y[i])))<=1.2d)
+				if(Math.sqrt(((current_x-get_x[i])*(current_x-get_x[i]))+((current_y-get_y[i])*(current_y-get_y[i])))<=650)
 				{
 					//System.out.println("Values are *****");
 					//System.out.println("(" + current_x + "," + current_y + ")" + "," + "(" + x1[i] + "," + y1[i] + ")");
@@ -150,13 +222,11 @@ class Simple2
 			int count_of_non_obstacles=0,c=0;
 			for(int i=6;i<12;i++)
 			{
-				if(get_x[i]>x2[k] && get_x[i]>current_x && get_y[i]>y2[k] && get_y[i]>current_y)
+				//checkrectangle(current_x,current_y,x2[k],y2[k],get_x[i],get_y[i],len_ob);
+				if(checkrectangle(current_x,current_y,x2[k],y2[k],get_x[i],get_y[i],imagine_width,c))
+				//if(get_x[i]>x2[k] && get_x[i]>current_x && get_y[i]>y2[k] && get_y[i]>current_y)
 				{
 					count_of_non_obstacles++;		
-				}
-				else
-				{
-					k++;
 				}
 				if(i==11 && count_of_non_obstacles==6)
 				{	
@@ -169,47 +239,58 @@ class Simple2
 					//c++;
 					//System.out.println(x2[k] + "," + y2[k]);
 				}
+				c++;
 			}
 			System.out.println("No. of non obstacles are " + count_of_non_obstacles);
 			k++;
 		}
-		
+		//System.out.println(final_list);
 		for (int i = 0; i < final_list.size(); i++)
 		{ 
 					 
 				x3[i]=final_list.get(i).get(0);
 				y3[i]=final_list.get(i).get(1);
-				//System.out.println("Final list values are: ");	
-				//System.out.println(x3[i] + "," + y3[i]);
-        } 
-        int pole_dis1_count=0,pole_dis2_count=0;
+				System.out.println("Final list values are: ");	
+				System.out.println(x3[i] + "," + y3[i]);
+        }
+       int pole_dis1_count=0,pole_dis2_count=0,new_x=0,new_y=0,new_id=0;
+       
         for(int i=0;i<final_list.size();i++)
         {
-			for(int j=1;j<final_list.size();j++)
+			for(int j=i+1;j<final_list.size();j++)
 			{
-				if((Math.sqrt(((g1_x-x3[i])*(g1_x-x3[i]))+((g1_y-y3[i])*(g1_y-y3[i])))) < (Math.sqrt(((g1_x-x3[i])*(g1_x-x3[j]))+((g1_y-y3[j])*(g1_y-y3[j])))))
+				/*if((Math.sqrt(((g1_x-x3[i])*(g1_x-x3[i]))+((g1_y-y3[i])*(g1_y-y3[i])))) < (Math.sqrt(((g1_x-x3[i])*(g1_x-x3[j]))+((g1_y-y3[j])*(g1_y-y3[j])))))
 				{
 					pole_dis1_count++;
 				
-				}
-				/*if((Math.sqrt(((g2_x-x3[i])*(g2_x-x3[i]))+((g2_y-y3[i])*(g2_y-y3[i])))) < (Math.sqrt(((g2_x-x3[i])*(g2_x-x3[j]))+((g2_y-y3[j])*(g2_y-y3[j])))))
-				{
-					pole_dis2_count++;
 				}*/
+				if((Math.sqrt(((g2_x-x3[i])*(g2_x-x3[i]))+((g2_y-y3[i])*(g2_y-y3[i])))) < (Math.sqrt(((g2_x-x3[i])*(g2_x-x3[j]))+((g2_y-y3[j])*(g2_y-y3[j])))))
+				{
+					new_x=x3[i];
+					new_y=y3[i];
+					new_id=id_list2.get(i);
+					//pole_dis2_count++;
+				}
+				else
+				{
+					new_x=x3[j];
+					new_y=y3[j];
+					new_id=id_list2.get(j);
+				}
 				
 			}
-			if(pole_dis1_count==final_list.size()-1)
-			{
-				System.out.println("Final id is " + id_list2.get(i));
-				System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
+		}
+			
+				//System.out.println("Final id is " + id_list2.get(i));
+				//System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
 				try {
 						FileWriter writer = new FileWriter("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\output.txt");
 						BufferedWriter bwr = new BufferedWriter(writer);
-						bwr.write(String.valueOf(id_list2.get(i)));
+						bwr.write(String.valueOf(new_id));
 						bwr.write(" ");
-						bwr.write(String.valueOf(x3[i]));
+						bwr.write(String.valueOf(new_x));
 						bwr.write(" ");
-						bwr.write(String.valueOf(y3[i]));
+						bwr.write(String.valueOf(new_y));
 						bwr.close();
 						System.out.println("succesfully written to a file");
             
@@ -221,12 +302,11 @@ class Simple2
         
         
         
-			}
 		}
         
 		
 		//System.out.println("-----------------");
-		System.out.println("Count of matching coordinates within distance of 1.2m :  " + count);
+		//System.out.println("Count of matching coordinates within 650 cm distance  :  " + count);
 		//System.out.println("-----------------");
 		
 		//Testing our output
@@ -252,5 +332,5 @@ class Simple2
         }*/
  
 	}
-}
+
 
