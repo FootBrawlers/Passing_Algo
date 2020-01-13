@@ -170,12 +170,7 @@ while True:
                 something_y = temp_switch_logic[1] + 10
                 host_cord[(temp_switch_logic[0],something_y)] = host_cord.pop(temp_switch_logic)
     
-        # except KeyError:
-        #     print(temp_switch_logic,host_cord)
 
-            # temp = coordinates_host[0]
-            # temp[0] -= 2
-            # temp[1] -= 2
     pygame.display.update()
 
 pygame.quit()

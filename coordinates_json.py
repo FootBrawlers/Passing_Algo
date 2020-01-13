@@ -44,9 +44,3 @@ a1 = json.dumps(final_d)
 file1 = open("random_coords.json","w")
 file1.write(a1)
 file1.close()
-# print(la1)
-# print(type(a1))
-# print(type(la1))
-
-# print(json.dumps(opp_cords))
-
