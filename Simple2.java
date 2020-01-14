@@ -3,22 +3,26 @@ import java.lang.*;
 import java.io.*;
 class Simple2
 {
+	//elipse formula  (x -x'')^2 / a*a + (y-y'')^2 / b*b <=1
+	//checking whether (x'',y'') is present inside the ellipse or not
+	
+	//checking whether there is any obstacle is present in the elipse or not
 	static boolean checkrectangle(int i_x,int i_y,int f_x,int f_y,int ob_x,int ob_y,int l,int ci)
 	{
 		
-		double p=Math.sqrt(((i_x-f_x)*(i_x-f_x))+((i_y-f_y)*(i_y-f_y)));
+		double p=Math.sqrt(((i_x-f_x)*(i_x-f_x))+((i_y-f_y)*(i_y-f_y))); //getting the "b" in the ellipse 
 		double l1=Double.valueOf(l);
 		
-		double x_dash=(i_x+f_x)/2;
+		double x_dash=(i_x+f_x)/2; //getting the midpoint of our bots coordinates on having the ball and the one we are checking in the matched list
 		double y_dash=(i_y+f_y)/2;
 		
-		double x_double_dash=(x_dash +f_x)/2;
+		double x_double_dash=(x_dash +f_x)/2; //shifting the midpoint to again the midpoint of the (the x_dash,y_dash and the one from matching list)
 		double y_double_dash=(y_dash + f_y)/2;
 		
-		double x_ellipse = (Math.pow(ob_x-x_double_dash,2))/(l1*l1);
+		double x_ellipse = (Math.pow(ob_x-x_double_dash,2))/(l1*l1); //typical ellipse formula a=l1 and b=3*p/2
 		double y_ellipse = (Math.pow(ob_y-y_double_dash,2))/((3*p)/2) * ((3*p)/2);
 		
-		if((x_ellipse+y_ellipse)<=1)
+		if((x_ellipse+y_ellipse)<=1) //if point is present in ellipse we are returning false
 			return false;
 		else
 			return true;
@@ -88,7 +92,9 @@ class Simple2
 		System.out.println("Values of third coordinate: " + X + "," + Y);
 		System.out.println("Values of fourth co-ordinate: " + x + "," + y);*/
 		
-	} 
+	}
+	
+	//get_x and get_y are out coordiantes that we got from the file and used readlist to store them back into get_x and get_y
 	public static void main(String args[]) throws IOException
 	{
 
@@ -171,9 +177,9 @@ class Simple2
 		}
 		
 		
-		
-		final int width=700,length=900,len_ob=width/2;
-		int nearest_goal_x=0,nearest_goal_y=0;
+		 
+		final int width=700,length=900; //dimensions of football
+		int nearest_goal_x=0,nearest_goal_y=0; //checking for the point which is nearest to goal post so this becomes the one having ball then it can goal directly
 		//int x1[]=new int[12];
 		//int y1[]=new int[12];
 		int x2[]=new int[6];
@@ -181,7 +187,8 @@ class Simple2
 		int x3[]=new int[6];
 		int y3[]=new int[6];
 		int count=0;
-		int g1_x=0,g2_x=length-1,g1_y=(width-1)/2,g2_y=(width-1)/2,imagine_width=40,count_iteration=0;
+		int g1_x=0,g2_x=length-1,g1_y=(width-1)/2,g2_y=(width-1)/2,imagine_width=40; //imagine_width is nothing but l1 in the ellipse that used in checkrectangle function
+		//count_iteration=0;
 		
 		List<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		List<ArrayList<Integer>> matched_list = new ArrayList<ArrayList<Integer>>();
@@ -210,6 +217,7 @@ class Simple2
 		//3 2 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12
 		//1 1 1 2 3 4 4 5 5 6 5 5 6 7 6 8 7 9 8 10 9 10 11 11
 		double len_between_goal=900;
+		//logic to find the one which is nearest to the goal post so can goal instead of passing
 		for(int i=0;i<6;i++)
         {
 				if((Math.sqrt(((g2_x-get_x[i])*(g2_x-get_y[i]))+((g2_y-get_y[i])*(g2_y-get_y[i])))) < len_between_goal)
@@ -229,7 +237,11 @@ class Simple2
 		}
 		
 		//System.out.println("Coordinates nearest to the goal are :" + nearest_goal_x + nearest_goal_y);
-		int current_x=get_x[0],current_y=get_y[0],pass_threshold=0,is_nearby_threshold=0,area=0;
+		
+		int current_x=get_x[0],current_y=get_y[0]; //setting the one having ball as our first coordinate in the file
+		
+		//checking the all coordinates one by one if they are on the threshold of 650 distance between the one having ball and it
+		//adding all those to the matched list of those satisfying
 		for(int i=1;i<6;i++)
 		{
 			
@@ -249,6 +261,7 @@ class Simple2
 				}
 		}
 		
+		//printing matched list
 		System.out.println("Matched list is:" + matched_list);
 		for (int i = 0; i < matched_list.size(); i++)
 		{ 
@@ -258,6 +271,13 @@ class Simple2
 				//System.out.println(x2[i] + "," + y2[i]);
    
         }
+        
+        
+        //iterating through matched list and keeping a check of non obstacles by using non_obstacles variable
+        
+        //checking can be done by checkrectangle function
+        
+        //if this is also satisfying then adding all these to our final list
         int k=0;
         while(k<matched_list.size())
         { 
@@ -286,7 +306,7 @@ class Simple2
 			System.out.println("No. of non obstacles are " + count_of_non_obstacles);
 			k++;
 		}
-		//System.out.println(final_list);
+		//printing our final list
 		for (int i = 0; i < final_list.size(); i++)
 		{ 
 					 
@@ -295,23 +315,23 @@ class Simple2
 				System.out.println("Final list values are: ");	
 				System.out.println(x3[i] + "," + y3[i]);
         }
-       int pole_dis1_count=0,pole_dis2_count=0,new_x=0,new_y=0,new_id=0;
+       int new_x=0,new_y=0,new_id=0; //new_x,new_y,new_id for storing the id and coordinates of our final condition satisfying one
        
+       
+       //this is our last condition 
+       
+       //Here we are iterating through final list that has no obstacles and checking the one which is nearest to our goal post(g2)
         for(int i=0;i<final_list.size();i++)
         {
 			for(int j=i+1;j<final_list.size();j++)
 			{
-				/*if((Math.sqrt(((g1_x-x3[i])*(g1_x-x3[i]))+((g1_y-y3[i])*(g1_y-y3[i])))) < (Math.sqrt(((g1_x-x3[i])*(g1_x-x3[j]))+((g1_y-y3[j])*(g1_y-y3[j])))))
-				{
-					pole_dis1_count++;
 				
-				}*/
 				if((Math.sqrt(((g2_x-x3[i])*(g2_x-x3[i]))+((g2_y-y3[i])*(g2_y-y3[i])))) < (Math.sqrt(((g2_x-x3[j])*(g2_x-x3[j]))+((g2_y-y3[j])*(g2_y-y3[j])))))
 				{
 					new_x=x3[i];
 					new_y=y3[i];
 					new_id=id_list2.get(i);
-					//pole_dis2_count++;
+					
 				}
 				else
 				{
@@ -324,8 +344,12 @@ class Simple2
 		}
 		
 			
-				//System.out.println("Final id is " + id_list2.get(i));
-				//System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
+				//if our nearest goal itself have the ball then it's goaled else it's passed to the bot satisfying all the above condtions
+				
+				//condition 1 : 650 threshold
+				//condition 2 : no obstacles
+				//condition 3 : nearest to goal post among the no obstacles coordinates
+				//condition 4 : checking if the one containing the ball is very much and first nearest to goal post
 				try {
 						FileWriter writer = new FileWriter("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\output.txt");
 						BufferedWriter bwr = new BufferedWriter(writer);
