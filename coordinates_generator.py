@@ -1,3 +1,5 @@
+# this script generates a file "input_coords_all.txt which contains the input coordinates."
+
 import pygame
 from pygame.locals import *
 from sys import exit
@@ -101,12 +103,8 @@ while True:
         if temp not in opp_cord.keys():
             opp_cord[pygame.mouse.get_pos()] = len(opp_cord)
                     
-            # coordinates_host = []
-    # coordinates_opp = []
-    
     if len(list(host_cord.keys())[:-1]) <= 6:
         for cord in host_cord.keys():
-            # coordinates_host.append(temp)
             temp = tuple(cord)    
             pygame.draw.circle(screen, host_bot_color, temp, 10)
 
@@ -125,12 +123,6 @@ while True:
             textRect.center = temp
             screen.blit(text, textRect)
 
-
-    # changing switch logic
-
-
-    # last_key = 49
-    
     if len(host_cord)>6 and len(opp_cord)==6:
         if count<1:
             host_cord_list = [0 for i in range(6)]
@@ -155,46 +147,6 @@ while True:
             file1.write(text_to_write)
             file1.close()
         count +=1   
-        # keys = pygame.key.get_pressed()
-        # coordinates_host = list(host_cord.keys())[0:-1]     
-        # if keys[pygame.K_1]:
-        #     temp_switch_logic = coordinates_host[0]
-
-        # elif keys[pygame.K_2]:
-        #     temp_switch_logic = coordinates_host[1]
-        
-        # elif keys[pygame.K_3]:
-        #     temp_switch_logic = coordinates_host[2]
-        
-        # elif keys[pygame.K_4]:
-        #     temp_switch_logic = coordinates_host[3]
-        
-        # elif keys[pygame.K_5]:
-        #     temp_switch_logic = coordinates_host[4]
-        
-        # elif keys[pygame.K_6]:
-        #     temp_switch_logic = coordinates_host[5]
-        # # try:
-        # if temp_switch_logic:
-        #     if keys[pygame.K_a]:  #to move left
-        #         something_x = temp_switch_logic[0] - 10
-        #         host_cord[(something_x,temp_switch_logic[1])] = host_cord.pop(temp_switch_logic)
-            
-        #     elif keys[pygame.K_d]:  #to move right
-        #         something_x = temp_switch_logic[0] + 10
-        #         host_cord[(something_x,temp_switch_logic[1])] = host_cord.pop(temp_switch_logic)
-            
-        #     elif keys[pygame.K_w]:  #to move up
-        #         something_y = temp_switch_logic[1] - 10
-        #         host_cord[(temp_switch_logic[0],something_y)] = host_cord.pop(temp_switch_logic)
-
-        #     elif keys[pygame.K_s]:  #to move down
-        #         something_y = temp_switch_logic[1] + 10
-        #         host_cord[(temp_switch_logic[0],something_y)] = host_cord.pop(temp_switch_logic)
-    
-
     pygame.display.update()
-
 pygame.quit()
-
 quit()

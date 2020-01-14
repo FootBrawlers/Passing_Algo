@@ -40,7 +40,6 @@ a1 = json.dumps(final_d)
 # a2 = json.dumps(d2)
 # la2 = json.loads(a2)
 
-
 file1 = open("random_coords.json","w")
 file1.write(a1)
 file1.close()
