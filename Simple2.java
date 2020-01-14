@@ -26,71 +26,6 @@ class Simple2
 			return false;
 		else
 			return true;
-		/*double X2=f_x + l1;
-		double Y2=f_y +p;
-		double x2 =X2+f_x-i_x;
-		double y2=Y2+f_y-i_y;
-		
-		double X1=f_x - l1;
-		double Y1=f_y - p;
-		double x1 =X1+f_x-i_x;
-		double y1=Y1+f_y-i_y;
-		if(ci==0)
-		{
-			System.out.println("-----------------------------------");
-			System.out.println("l1:" + l1 + " " + "p:" + p);
-			System.out.println();
-			System.out.println("One side of co-ordinates are(may be negative): " );
-			System.out.println("Values of third coordinate of " + X1 + "," + Y1);
-			System.out.println("Values of fourth co-ordinate of " + x1 + "," + y1);
-			System.out.println();
-			System.out.println("Another side of co-ordinates are: " );
-			System.out.println("Values of third coordinate of " + X2 + "," + Y2);
-			System.out.println("Values of fourth co-ordinate of " + x2 + "," + y2);
-			System.out.println("-----------------------------------");
-			System.out.println();
-		}
-		//if(((ob_x>=i_x && ob_x>=f_x && ob_x<X1 && ob_x<x1) && (ob_y>=i_y && ob_y>=f_y && ob_y<Y2 && ob_y<Y2)) || ((ob_x>=i_x && ob_x>=f_x && ob_x<X2 && ob_x<x2) && (ob_y>=i_y && ob_y>=f_y && ob_y<Y2 && ob_y<Y2)))//check if is obstacle
-		
-		//if(ob_x>=X1 && ob_x>=x1 && ob_x<X2 && ob_x<x2 && ob_y>=Y1 && ob_y>=y1 && ob_y<Y2 && ob_y<y2)//checking if it is an obstacle
-		if((ob_x>=X1 && ob_x<X2) || (ob_x>=x1 && ob_x<x2) && (ob_y>=Y1 && ob_y>=y1 && ob_y<Y2 && ob_y<y2))
-		{
-			return false;
-		}
-		else
-			return true;*/
-		
-		/*
-		double l1=Double.valueOf(l);
-		long l2=Math.round(l);
-		
-		double d=Math.atan(l1/p);
-		
-		double h=(l1/Math.sin(d));
-		long h1=Math.round(h);
-		
-		double A=Math.pow(i_x,2)-Math.pow(f_x,2)+Math.pow(i_y,2)-Math.pow(f_y,2)-Math.pow(l2,2)+Math.pow(h1,2);
-		double B= (1 + (Math.pow(i_y-f_y,2)/Math.pow(i_x-f_x,2)));
-		double C=(((2*i_x*(i_y-f_y))/(i_x-f_x))-(A*(i_y-f_y)/Math.pow(i_x-f_x,2)));
-		double D=((Math.pow(A,2))/((4*(Math.pow(i_x-f_x,2)))-(i_x*((Math.pow(i_x,2)-Math.pow(f_x,2)-Math.pow(i_y,2)-Math.pow(f_y,2)-Math.pow(l2,2)+Math.pow(h1,2)))/(i_x-f_x))+ (Math.pow(i_y,2)-Math.pow(l2,2)+Math.pow(i_x,2)))); 
-		
-		long a=Math.round(A);
-		long b=Math.round(B);
-		long c=Math.round(C);
-		long d1=Math.round(D);
-		
-		double Y=Math.round((-c + Math.sqrt(c*c-(4*b*d1)))/2*b);
-		double X =Math.round((i_x*i_x)-(f_x*f_x)+(i_y*i_y)-(f_y*f_y)-(l2*l2)+(h1*h1)-2*Y*(i_y-f_y));*/
-		
-		/*double Y=(-C + Math.sqrt(C*C-(4*B*D)))/2*B;
-		double X =(i_x*i_x)-(f_x*f_x)+(i_y*i_y)-(f_y*f_y)-(l1*l1)+(h*h)-2*Y*(i_y-f_y);*/ 
-		
-		
-		//System.out.println(inc_var);
-		/*System.out.println("----------------------------");
-		//System.out.println("p:" + p + " " + "l1:" + l1 + "l2" + l2 + " " + "d:" + d + " " + "h:" + h + " " + "h1" + h1 + " " + "A:" + a + " " + "B:" + b + " " + "C:" + c + " " + "D:" + d1);
-		System.out.println("Values of third coordinate: " + X + "," + Y);
-		System.out.println("Values of fourth co-ordinate: " + x + "," + y);*/
 		
 	}
 	
@@ -159,13 +94,7 @@ class Simple2
 				}
 		} 
 		
-		/*for (int i = 0; i < read_list.size(); i++)
-		{ 
-					 
-				get_x[i]=read_list.get(1);
-				get_y[i]=read_list.get(2);	
-				System.out.println(get_x[i] + "," + get_y[i]);
-        } */
+		
 		//System.out.println(read_list);
 		
 		
