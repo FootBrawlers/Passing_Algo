@@ -8,7 +8,21 @@ class Simple2
 		
 		double p=Math.sqrt(((i_x-f_x)*(i_x-f_x))+((i_y-f_y)*(i_y-f_y)));
 		double l1=Double.valueOf(l);
-		double X2=f_x + l1;
+		
+		double x_dash=(i_x+f_x)/2;
+		double y_dash=(i_y+f_y)/2;
+		
+		double x_double_dash=(x_dash +f_x)/2;
+		double y_double_dash=(y_dash + f_y)/2;
+		
+		double x_ellipse = (Math.pow(ob_x-x_double_dash,2))/(l1*l1);
+		double y_ellipse = (Math.pow(ob_y-y_double_dash,2))/((3*p)/2) * ((3*p)/2);
+		
+		if((x_ellipse+y_ellipse)<=1)
+			return false;
+		else
+			return true;
+		/*double X2=f_x + l1;
 		double Y2=f_y +p;
 		double x2 =X2+f_x-i_x;
 		double y2=Y2+f_y-i_y;
@@ -40,7 +54,7 @@ class Simple2
 			return false;
 		}
 		else
-			return true;
+			return true;*/
 		
 		/*
 		double l1=Double.valueOf(l);
@@ -152,6 +166,7 @@ class Simple2
 		
 		
 		final int width=700,length=900,len_ob=width/2;
+		int nearest_goal_x=0,nearest_goal_y=0;
 		//int x1[]=new int[12];
 		//int y1[]=new int[12];
 		int x2[]=new int[6];
@@ -159,7 +174,7 @@ class Simple2
 		int x3[]=new int[6];
 		int y3[]=new int[6];
 		int count=0;
-		int g1_x=0,g2_x=(width-1),g1_y=(length-1)/2,g2_y=(length-1)/2,imagine_width=10,count_iteration=0;
+		int g1_x=0,g2_x=length-1,g1_y=(width-1)/2,g2_y=(width-1)/2,imagine_width=40,count_iteration=0;
 		
 		List<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
 		List<ArrayList<Integer>> matched_list = new ArrayList<ArrayList<Integer>>();
@@ -187,6 +202,26 @@ class Simple2
         } */
 		//3 2 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12
 		//1 1 1 2 3 4 4 5 5 6 5 5 6 7 6 8 7 9 8 10 9 10 11 11
+		double len_between_goal=900;
+		for(int i=0;i<6;i++)
+        {
+				if((Math.sqrt(((g2_x-get_x[i])*(g2_x-get_y[i]))+((g2_y-get_y[i])*(g2_y-get_y[i])))) < len_between_goal)
+				{
+					nearest_goal_x=get_x[i];
+					nearest_goal_y=get_y[i];
+					len_between_goal=Math.sqrt(((g2_x-get_x[i])*(g2_x-get_y[i]))+((g2_y-get_y[i])*(g2_y-get_y[i])));
+					//new_id=id_list2.get(i);
+					//pole_dis2_count++;
+					//System.out.println("Coordinates nearest to the goal are :" + nearest_goal_x + nearest_goal_y);
+					System.out.println(nearest_goal_x);
+					System.out.println(nearest_goal_y);
+					System.out.println(len_between_goal);
+				}
+
+			//System.out.println("Coordinates nearest to the goal are :" + nearest_goal_x + nearest_goal_y);
+		}
+		
+		//System.out.println("Coordinates nearest to the goal are :" + nearest_goal_x + nearest_goal_y);
 		int current_x=get_x[0],current_y=get_y[0],pass_threshold=0,is_nearby_threshold=0,area=0;
 		for(int i=1;i<6;i++)
 		{
@@ -264,7 +299,7 @@ class Simple2
 					pole_dis1_count++;
 				
 				}*/
-				if((Math.sqrt(((g2_x-x3[i])*(g2_x-x3[i]))+((g2_y-y3[i])*(g2_y-y3[i])))) < (Math.sqrt(((g2_x-x3[i])*(g2_x-x3[j]))+((g2_y-y3[j])*(g2_y-y3[j])))))
+				if((Math.sqrt(((g2_x-x3[i])*(g2_x-x3[i]))+((g2_y-y3[i])*(g2_y-y3[i])))) < (Math.sqrt(((g2_x-x3[j])*(g2_x-x3[j]))+((g2_y-y3[j])*(g2_y-y3[j])))))
 				{
 					new_x=x3[i];
 					new_y=y3[i];
@@ -280,19 +315,32 @@ class Simple2
 				
 			}
 		}
+		
 			
 				//System.out.println("Final id is " + id_list2.get(i));
 				//System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
 				try {
 						FileWriter writer = new FileWriter("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\output.txt");
 						BufferedWriter bwr = new BufferedWriter(writer);
+						if(current_x == nearest_goal_x && current_y==nearest_goal_x)
+						{
+							bwr.write("Ball is goaled");
+							bwr.write("co:ordinates are:\n");
+							bwr.write(String.valueOf(new_x));
+							bwr.write(" ");
+							bwr.write(String.valueOf(new_y));
+							bwr.write(" ");
+						}
+						else
+						{
+							bwr.write(String.valueOf(new_x));
+							bwr.write(" ");
+							bwr.write(String.valueOf(new_y));
+							bwr.write(" ");
+						}
 						bwr.write(String.valueOf(new_id));
-						bwr.write(" ");
-						bwr.write(String.valueOf(new_x));
-						bwr.write(" ");
-						bwr.write(String.valueOf(new_y));
-						bwr.close();
 						System.out.println("succesfully written to a file");
+						bwr.close();
             
 					} 
 				catch (IOException ioe) 
