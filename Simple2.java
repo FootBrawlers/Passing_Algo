@@ -92,11 +92,14 @@ class Simple2
 		System.out.println("Values of third coordinate: " + X + "," + Y);
 		System.out.println("Values of fourth co-ordinate: " + x + "," + y);*/
 		
-	} 
+	}
 	
 	//get_x and get_y are out coordiantes that we got from the file and used readlist to store them back into get_x and get_y
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException
 	{
+
+		// --------------------------------- INPUT FROM FILE ---------------------------------------
+
 		int[] get_x=new int[12];
 		int[] get_y=new int[12];
 		int x1[]=new int[12];
@@ -109,27 +112,28 @@ class Simple2
 		BufferedReader br=null;
 		try
 		{
-			File file = new File("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\input.txt");
+			File file = new File("input_coords_all.txt");
 			br = new BufferedReader(new FileReader(file));
 			List<Integer[]> read_list = new ArrayList<Integer[]>();
 			String st=new String();
 			for(int i=0;i<12;i++)
 			{
-			while ((st = br.readLine()) != null)
-			{
-				Integer everything[]=new Integer[3];
-				String temp[] = st.split(" ");
-				everything[0]=Integer.parseInt(temp[0]);
-				everything[1]=Integer.parseInt(temp[1]);
-				everything[2]=Integer.parseInt(temp[2]);
-				read_list.add(everything);
-				
-				//System.out.println(st[i]); 
+				while ((st = br.readLine()) != null)
+				{
+					Integer everything[]=new Integer[3];
+					String temp[] = st.split(" ");
+					everything[0]=Integer.parseInt(temp[0]);
+					everything[1]=Integer.parseInt(temp[1]);
+					everything[2]=Integer.parseInt(temp[2]);
+					read_list.add(everything);
+					
+					//System.out.println(st[i]); 
+				}
+			// for(int x:read_list.get(i))
+			// {
+			// 	//System.out.print(x+" "); //]+" "+read_list.get(i)[1]+" "+read_list.get(i)[2]);
+			// }
 			}
-			/*for(int x:read_list.get(i))
-			{
-				//System.out.print(x+" "); //]+" "+read_list.get(i)[1]+" "+read_list.get(i)[2]);
-			}*/}
 			
 			for(int i=0;i<12;i++)
 			{
@@ -162,7 +166,10 @@ class Simple2
 				get_y[i]=read_list.get(2);	
 				System.out.println(get_x[i] + "," + get_y[i]);
         } */
-        //System.out.println(read_list);
+		//System.out.println(read_list);
+		
+		
+		// --------------------------------- VERIFYING THE INPUT ---------------------------------------
         
         for(int i=0;i<12;i++)
         {
@@ -390,6 +397,7 @@ class Simple2
 		System.out.println("After second condition id's stasifying are:");
 		for(int i=0;i<id_list2.size();i++)
 			System.out.println("id = " + id);*/
+
 		/*try {
             FileWriter writer = new FileWriter("output.txt");
             BufferedWriter bwr = new BufferedWriter(writer);
