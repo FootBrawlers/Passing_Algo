@@ -106,7 +106,7 @@ class Simple2
 		BufferedReader br=null;
 		try
 		{
-			File file = new File("input_coords_all.txt");
+			File file = new File("input.txt");
 			br = new BufferedReader(new FileReader(file));
 			List<Integer[]> read_list = new ArrayList<Integer[]>();
 			String st=new String();
@@ -327,7 +327,7 @@ class Simple2
 				//System.out.println("Final id is " + id_list2.get(i));
 				//System.out.println("This is our required bot of co:ordinates" + "(" + x3[i] + "," + y3[i] + ")");
 				try {
-						FileWriter writer = new FileWriter("C:\\Users\\TejaswiKarasani\\Desktop\\Passing_Algo\\output.txt");
+						FileWriter writer = new FileWriter("output.txt");
 						BufferedWriter bwr = new BufferedWriter(writer);
 						if(current_x == nearest_goal_x && current_y==nearest_goal_x)
 						{

@@ -130,7 +130,7 @@ while True:
                 if host_cord[i]<=5:
                     host_cord_list[host_cord[i]] = i
             print(host_cord_list)
-            file1 = open("input_coords_all.txt","w")
+            file1 = open("input.txt","w")
             text_to_write = ""
             for i in range(len(host_cord_list)):
                 text_to_write += str(i+1) +" "+" ".join(list(map(str,host_cord_list[i])))+"\n"
