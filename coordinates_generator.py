@@ -146,6 +146,9 @@ while True:
             
             file1.write(text_to_write)
             file1.close()
+            rect_save = pygame.Rect(field_x,field_y,field_length,field_width)
+            sub = screen.subsurface(rect_save)
+            pygame.image.save(sub,"screenshot.jpg")
         count +=1   
     pygame.display.update()
 pygame.quit()
