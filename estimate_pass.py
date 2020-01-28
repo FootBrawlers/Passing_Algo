@@ -16,13 +16,13 @@ def distance(p1,p2):
 
 # FUNCTION for finding the coordinates to whom the ball can be passed.
 # argument1 -> list of coordinates of the form [[x1,y1],[x2,y2],...,[xn,yn]] , argument2 -> Id of the bot which is currently holding the ball
-def passable_host_points(l,current_id):
-    to_return_list = []
-    for i in range(len(l)):
+def passable_host_bots(list_host_coords,current_id):
+    list_passable_host_bots = []
+    for i in range(len(list_host_coords)):
         if i!=current_id:
-            if distance(l[current_id],l[i]) <= maximum_pass_length:
-                to_return_list.append(l[i])
-    return to_return_list
+            if distance(list_host_coords[current_id],list_host_coords[i]) <= maximum_pass_length:
+                list_passable_host_bots.append(list_host_coords[i])
+    return list_passable_host_bots
 
 
 
@@ -52,5 +52,5 @@ if __name__ == "__main__":
     print()
 
     # Verifying the passable points
-    print("Passable points with ",host_cords[0]," as current bot : ",passable_host_points(host_cords,0))
+    print("Passable points with ",host_cords[0]," as current bot : ",passable_host_bots(host_cords,0))
     print()
