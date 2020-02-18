@@ -54,3 +54,6 @@ if __name__ == "__main__":
     # Verifying the passable points
     print("Passable points with ",host_cords[0]," as current bot : ",passable_host_bots(host_cords,0))
     print()
+    list_passable_host_bots = passable_host_bots(host_cords,0)
+
+    
