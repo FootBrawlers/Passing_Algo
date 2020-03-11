@@ -6,7 +6,7 @@ maximum_pass_length = 700
 ellipse_width_opp_check = 40  # 'b'-parameter and 'a' will be (distance between points)*1.5
 threshold = ellipse_width_opp_check
 import math as mt
-from Passing_Algo.Passing import coordinates_generator as generator
+import Passing.test as generator
 gp = [1020, 310]
 gp_length = 140
 
@@ -139,5 +139,6 @@ if __name__ == "__main__":
                 if (dict[i + 1][0] == x[0] and dict[i + 1][1] == x[1]):
                     return (i + 1)
 
+        pass_pos=int(chk_pass(host_cords[0], list_passable_host_bots, opp_cords)[0])
         print("PASS TO BOT:", chk_pass(host_cords[0], list_passable_host_bots, opp_cords))
-        generator.show()
+        generator.show(pass_pos)

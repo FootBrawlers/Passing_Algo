@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 from sys import exit
 from random import *
+import math as mt
 
 pygame.init()
 # screen = pygame.display.set_mode((1280, 960), 0, 32)
@@ -99,6 +100,7 @@ def generate():
 
         # center circle
         pygame.draw.circle(screen, field_border_color, (center_x, 310), circle_radius, 1)
+        #pygame.draw.circle(screen, field_border_color, (center_x+100, 400), circle_radius, 1)
 
         # center line horizontal
         # pygame.draw.line(screen, field_border_color, (field_x,center_y), (field_x + field_length, center_y),1)
@@ -165,7 +167,7 @@ def generate():
         pygame.display.update()
 
 
-def show():
+def show(p):
     host_cords1 = []
     opp_cords1 = []
     input_file = open("input.txt", "r")
@@ -215,6 +217,7 @@ def show():
 
         # center circle
         pygame.draw.circle(screen, field_border_color, (center_x, 310), circle_radius, 1)
+        #pygame.draw.circle(screen, field_border_color, (center_x+100, 400), circle_radius, 1)
 
         # center line horizontal
         # pygame.draw.line(screen, field_border_color, (field_x,center_y), (field_x + field_length, center_y),1)
@@ -244,6 +247,38 @@ def show():
         pygame.draw.rect(screen, field_border_color,
                          Rect((field_x + field_length - (width_big_d - 1), center_y - ((5 / 8) * (field_width // 2))),
                               (width_big_d, (10 / 8) * (field_width // 2))), 1)
+
+        #player circle
+        f=open('input.txt')
+        lines=f.readlines()
+        x_i=int(lines[p-1][1:5])
+        y_i=int(lines[p-1][6:])
+        x_1=int(lines[0][1:5])
+        y_1=int(lines[0][6:])
+
+        pygame.draw.circle(screen, field_border_color, (x_i,y_i), 40, 1)
+
+        #player arc
+        
+        dis=2*mt.sqrt((x_1-x_i)**2+(y_1-y_i)**2)
+        rectangle=(x_1,y_1,dis,80)
+        print((x_1, y_1, dis, 80))
+        rect_try = pygame.Rect(x_1, y_1, dis, 80)
+        arc= pygame.draw.arc(screen,field_border_color,rectangle,(mt.pi)/2,3*(mt.pi)/2,1)
+        #arc= pygame.draw.arc(screen,field_border_color,rectangle,(mt.pi)/2,3*(mt.pi)/2,1)
+        screen2 = pygame.transform.rotate(screen, 45)
+        newarc=screen2.get_rect(center=arc.center)
+        #pygame.draw.rect(screen,field_border_color,newrect)
+        #pygame.draw.rect(screen,field_border_color,rect_try)
+        #sizee = newrect.size
+        #rectangle = (1*newrect.centerx,1*newrect.centery,dis,80)
+        #print(rectangle)
+        newarc = pygame.draw.arc(newarc)
+       
+
+        
+        
+        
 
         screen.unlock()
         # SETUP FOR TEXT
