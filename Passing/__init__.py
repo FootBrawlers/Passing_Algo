@@ -9,6 +9,7 @@ import math as mt
 import Passing.test as generator
 gp = [1020, 310]
 gp_length = 140
+import rotate as rot
 
 
 
@@ -100,7 +101,12 @@ def chk_pass(cur, l, ec):
 
 
 if __name__ == "__main__":
+    angles=[0,0,0,0,0,0] #initial angles for each of our bot
+    passer=0
+    
+
     generator.generate()
+    
 
     while True:
         host_cords = []  # this will contain the host coordinates with id as index, i.e., from 1 to 6
@@ -139,6 +145,13 @@ if __name__ == "__main__":
                 if (dict[i + 1][0] == x[0] and dict[i + 1][1] == x[1]):
                     return (i + 1)
 
-        pass_pos=int(chk_pass(host_cords[0], list_passable_host_bots, opp_cords)[0])
+        pass_pos=int(chk_pass(host_cords[0], list_passable_host_bots, opp_cords)[0]) #bot which receives the ball
+
         print("PASS TO BOT:", chk_pass(host_cords[0], list_passable_host_bots, opp_cords))
+        
+        f_ang_passer,f_ang_receiver= rot.rotate(host_cords[0],angles[0],host_cords[pass_pos-1],angles[pass_pos-1])
+        passer_change,receiver_change=rot.change_in_angle(angles[0],f_ang_passer,angles[pass_pos-1],f_ang_receiver)
+        angles[0]=f_ang_passer
+        angles[pass_pos-1]=f_ang_receiver
         generator.show(pass_pos)
+        
